@@ -50,7 +50,7 @@ export default function InventoryPage() {
         ].map((s) => (
           <div key={s.l} className="card p-4">
             <div className="flex items-center justify-between text-xs text-muted">{s.l}<Icon name={s.icon} size={16} className={s.tone} /></div>
-            <p className={cn("mt-2 font-serif text-3xl tabular-nums", s.tone)}>{s.v}</p>
+            <p className={cn("mt-2 font-semibold tracking-tight text-2xl tabular-nums", s.tone)}>{s.v}</p>
           </div>
         ))}
       </div>

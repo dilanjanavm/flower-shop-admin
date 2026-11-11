@@ -64,7 +64,7 @@ export default function CustomersPage() {
           <div className="space-y-6">
             <div className="grid grid-cols-3 gap-3">
               {[{ l: "Orders", v: current.orders }, { l: "Lifetime value", v: lkr(current.ltv) }, { l: "Member since", v: formatShort(current.joined) }].map((s) => (
-                <div key={s.l} className="rounded-2xl bg-panel-2 p-3"><p className="text-[11px] text-muted">{s.l}</p><p className="mt-1 font-serif text-xl">{s.v}</p></div>
+                <div key={s.l} className="rounded-xl bg-panel-2 p-3"><p className="text-[11px] text-muted">{s.l}</p><p className="mt-1 font-semibold tracking-tight text-lg">{s.v}</p></div>
               ))}
             </div>
             <div className="space-y-1 text-sm"><p className="flex items-center gap-2"><Icon name="mail" size={15} className="text-muted" />{current.email}</p><p className="flex items-center gap-2"><Icon name="phone" size={15} className="text-muted" />{current.phone}</p></div>

@@ -59,7 +59,7 @@ export default function ProductEditPage() {
       <div className="grid gap-6 xl:grid-cols-[1fr_360px]">
         <div className="space-y-6">
           <section className="card space-y-4 p-6">
-            <h2 className="font-serif text-2xl">Details</h2>
+            <h2 className="font-semibold tracking-tight text-lg">Details</h2>
             <div className="grid gap-4 sm:grid-cols-2">
               <Field label="Name"><input className="field" value={p.name} onChange={(e) => setP({ ...p, name: e.target.value, slug: existing ? p.slug : slugify(e.target.value) })} /></Field>
               <Field label="SKU"><input className="field font-mono" value={p.sku} onChange={(e) => setP({ ...p, sku: e.target.value.toUpperCase() })} /></Field>
@@ -71,7 +71,7 @@ export default function ProductEditPage() {
           </section>
 
           <section className="card p-6">
-            <h2 className="font-serif text-2xl">Size tiers & prices</h2>
+            <h2 className="font-semibold tracking-tight text-lg">Size tiers & prices</h2>
             <p className="text-sm text-muted">Each tier is a product variant. Recipes (BOM) per tier are deferred until stock checks are switched on.</p>
             <div className="mt-4 overflow-x-auto">
               <table className="w-full min-w-[560px] text-sm">
@@ -92,7 +92,7 @@ export default function ProductEditPage() {
           </section>
 
           <section className="card space-y-5 p-6">
-            <h2 className="font-serif text-2xl">Classification</h2>
+            <h2 className="font-semibold tracking-tight text-lg">Classification</h2>
             {([["occasions", "Occasions", taxonomies.occasions], ["flowerTypes", "Flower types", taxonomies.flowerTypes], ["colours", "Colours", taxonomies.colours]] as const).map(([k, label, items]) => (
               <div key={k}>
                 <p className="label">{label}</p>
@@ -112,10 +112,10 @@ export default function ProductEditPage() {
           </section>
 
           <section className="card space-y-4 p-6">
-            <h2 className="font-serif text-2xl">SEO</h2>
+            <h2 className="font-semibold tracking-tight text-lg">SEO</h2>
             <Field label="SEO title" hint={`${seo.title.length}/60`}><input className="field" value={seo.title} maxLength={70} onChange={(e) => setSeo({ ...seo, title: e.target.value })} /></Field>
             <Field label="Meta description" hint={`${seo.description.length}/160`}><textarea className="field resize-none" rows={2} maxLength={170} value={seo.description} onChange={(e) => setSeo({ ...seo, description: e.target.value })} /></Field>
-            <div className="rounded-2xl bg-panel-2 p-4 text-sm">
+            <div className="rounded-xl bg-panel-2 p-4 text-sm">
               <p className="text-xs text-emerald-700 dark:text-emerald-400">sithuliyaflora.lk › product › {p.slug || "…"}</p>
               <p className="text-base text-sky-700 dark:text-sky-400">{seo.title || p.name || "Product title"}</p>
               <p className="text-xs text-muted">{seo.description || "Meta description preview"}</p>
@@ -156,8 +156,8 @@ export default function ProductEditPage() {
             <section className="card p-6 text-sm">
               <p className="label">Performance</p>
               <div className="grid grid-cols-2 gap-3">
-                <div><p className="font-serif text-2xl">{existing.rating || "—"}</p><p className="text-xs text-muted">{existing.reviewCount} reviews</p></div>
-                <div><p className="font-serif text-2xl">{existing.popularity}</p><p className="text-xs text-muted">popularity score</p></div>
+                <div><p className="font-semibold tracking-tight text-lg">{existing.rating || "—"}</p><p className="text-xs text-muted">{existing.reviewCount} reviews</p></div>
+                <div><p className="font-semibold tracking-tight text-lg">{existing.popularity}</p><p className="text-xs text-muted">popularity score</p></div>
               </div>
               <p className="mt-3 text-xs text-muted">Standard price {lkr(existing.variants[0].price)} · price changes are audit-logged.</p>
             </section>

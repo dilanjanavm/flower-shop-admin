@@ -48,15 +48,15 @@ export default function GalleryPage() {
       ) : (
         <div className="grid gap-6 lg:grid-cols-3">
           <section className="card p-6">
-            <h2 className="mb-4 font-serif text-2xl">Wrapping</h2>
+            <h2 className="mb-4 font-semibold tracking-tight text-lg">Wrapping</h2>
             <ul className="space-y-3">{wraps.map((w) => <li key={w.id} className="flex items-center gap-3"><span className="h-9 w-9 rounded-lg ring-1 ring-black/10" style={{ background: w.swatch }} /><span className="flex-1 text-sm"><span className="block font-medium">{w.name}</span><span className="text-xs text-muted">{w.price ? `+${lkr(w.price)}` : "Included"}</span></span>{w.available ? <Badge tone="green">On</Badge> : <Badge tone="neutral">Off</Badge>}</li>)}</ul>
           </section>
           <section className="card p-6">
-            <h2 className="mb-4 font-serif text-2xl">Ribbons</h2>
+            <h2 className="mb-4 font-semibold tracking-tight text-lg">Ribbons</h2>
             <div className="flex flex-wrap gap-3">{ribbons.map((r) => <span key={r.id} className="flex items-center gap-2 rounded-full border border-line py-1 pl-1 pr-3 text-sm"><span className="h-6 w-6 rounded-full ring-1 ring-black/10" style={{ background: r.hex }} />{r.name}</span>)}</div>
           </section>
           <section className="card p-6">
-            <h2 className="mb-4 font-serif text-2xl">Add-ons</h2>
+            <h2 className="mb-4 font-semibold tracking-tight text-lg">Add-ons</h2>
             <ul className="space-y-3">{addOns.map((a) => <li key={a.id} className="flex items-center gap-3"><Thumb src={a.image} className="h-9 w-9 rounded-lg" /><span className="flex-1 text-sm"><span className="block font-medium">{a.name}</span><span className="text-xs text-muted">{lkr(a.price)}</span></span>{a.available ? <Badge tone="green">In stock</Badge> : <Badge tone="red">Out</Badge>}</li>)}</ul>
           </section>
         </div>
@@ -66,7 +66,7 @@ export default function GalleryPage() {
         {edit && (
           <div className="space-y-4">
             <div className="grid grid-cols-[96px_1fr] gap-4">
-              <Thumb src={edit.image} className="h-24 w-24 rounded-2xl" />
+              <Thumb src={edit.image} className="h-24 w-24 rounded-xl" />
               <Field label="Photo URL"><input className="field" value={edit.image} onChange={(e) => setEdit({ ...edit, image: e.target.value })} placeholder="https://…" /></Field>
             </div>
             <div className="grid grid-cols-2 gap-4">

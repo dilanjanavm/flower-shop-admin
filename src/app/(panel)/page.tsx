@@ -83,7 +83,7 @@ export default function DashboardPage() {
           <section className="card p-6">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
-                <h2 className="font-serif text-2xl">Revenue trend</h2>
+                <h2 className="font-semibold tracking-tight text-lg">Revenue trend</h2>
                 <p className="text-xs text-muted">Paid orders by order date · LKR</p>
               </div>
               <div className="w-48"><Tabs tabs={[{ key: "7", label: "7 days" }, { key: "30", label: "30 days" }]} value={range} onChange={setRange} /></div>
@@ -92,7 +92,7 @@ export default function DashboardPage() {
           </section>
         ) : (
           <section className="card p-6">
-            <h2 className="font-serif text-2xl">Up next in the studio</h2>
+            <h2 className="font-semibold tracking-tight text-lg">Up next in the studio</h2>
             <p className="text-xs text-muted">Sorted by delivery date, then slot</p>
             <UpNext list={upNext} />
           </section>
@@ -100,7 +100,7 @@ export default function DashboardPage() {
 
         <section className="card p-6">
           <div className="flex items-center justify-between">
-            <h2 className="font-serif text-2xl">Today by slot</h2>
+            <h2 className="font-semibold tracking-tight text-lg">Today by slot</h2>
             <Badge tone="neutral">{todays.length} orders</Badge>
           </div>
           <ul className="mt-5 space-y-4">
@@ -117,7 +117,7 @@ export default function DashboardPage() {
             ))}
           </ul>
           {atRisk.length > 0 && (
-            <div className="mt-6 rounded-2xl bg-amber-50 p-4 text-sm text-amber-900 dark:bg-amber-500/10 dark:text-amber-200">
+            <div className="mt-6 rounded-xl bg-amber-50 p-4 text-sm text-amber-900 dark:bg-amber-500/10 dark:text-amber-200">
               <p className="flex items-center gap-2 font-semibold"><Icon name="alert" size={16} /> {atRisk.length} unpaid order{atRisk.length > 1 ? "s" : ""} due soon</p>
               <ul className="mt-2 space-y-1">
                 {atRisk.map((o) => <li key={o.id}><Link href={`/orders/${o.id}`} className="underline-offset-2 hover:underline">{o.orderNumber}</Link> · {formatShort(o.deliveryDate)} · {lkr(o.total)}</li>)}
@@ -130,7 +130,7 @@ export default function DashboardPage() {
       <div className="mt-6 grid gap-6 xl:grid-cols-3">
         <section className="card p-6 xl:col-span-1">
           <div className="mb-4 flex items-center justify-between">
-            <h2 className="font-serif text-2xl">Slips waiting</h2>
+            <h2 className="font-semibold tracking-tight text-lg">Slips waiting</h2>
             {owner && <Link href="/payments" className="text-sm text-muted hover:text-fg">Review all</Link>}
           </div>
           {slips.length === 0 ? <p className="py-6 text-center text-sm text-muted">No slips to verify 🎉</p> : (
@@ -151,7 +151,7 @@ export default function DashboardPage() {
 
         <section className="card p-6">
           <div className="mb-4 flex items-center justify-between">
-            <h2 className="font-serif text-2xl">Quotation inbox</h2>
+            <h2 className="font-semibold tracking-tight text-lg">Quotation inbox</h2>
             <Link href="/quotations" className="text-sm text-muted hover:text-fg">Open</Link>
           </div>
           <ul className="divide-y divide-line">
@@ -173,13 +173,13 @@ export default function DashboardPage() {
 
         {owner ? (
           <section className="card p-6">
-            <h2 className="mb-1 font-serif text-2xl">Revenue by occasion</h2>
+            <h2 className="mb-1 font-semibold tracking-tight text-lg">Revenue by occasion</h2>
             <p className="mb-5 text-xs text-muted">Paid orders in the current data set</p>
             <HBarChart data={byOccasion} />
           </section>
         ) : (
           <section className="card p-6">
-            <h2 className="mb-4 font-serif text-2xl">Low stock</h2>
+            <h2 className="mb-4 font-semibold tracking-tight text-lg">Low stock</h2>
             <LowStock />
           </section>
         )}
@@ -188,12 +188,12 @@ export default function DashboardPage() {
       {owner && (
         <div className="mt-6 grid gap-6 xl:grid-cols-[1.6fr_1fr]">
           <section className="card p-6">
-            <h2 className="font-serif text-2xl">Up next in the studio</h2>
+            <h2 className="font-semibold tracking-tight text-lg">Up next in the studio</h2>
             <p className="text-xs text-muted">Sorted by delivery date, then slot</p>
             <UpNext list={upNext} />
           </section>
           <section className="card p-6">
-            <div className="mb-4 flex items-center justify-between"><h2 className="font-serif text-2xl">Low stock</h2><Link href="/inventory" className="text-sm text-muted hover:text-fg">Stock</Link></div>
+            <div className="mb-4 flex items-center justify-between"><h2 className="font-semibold tracking-tight text-lg">Low stock</h2><Link href="/inventory" className="text-sm text-muted hover:text-fg">Stock</Link></div>
             <LowStock />
           </section>
         </div>

@@ -89,7 +89,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
                     href={i.href}
                     title={collapsed ? i.label : undefined}
                     className={cn(
-                      "group relative flex items-center gap-3 rounded-xl px-3 py-2 text-sm transition",
+"group relative flex items-center gap-3 rounded-xl px-3 py-2 text-sm transition",
                       isActive(i.href) ? "bg-invert text-invert-fg" : "text-fg-soft hover:bg-panel-2 hover:text-fg",
                       collapsed && "justify-center px-0",
                     )}
@@ -119,7 +119,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={theme === "dark" ? "/brand/logo-mark-white.png" : "/brand/logo-mark.png"} alt="" className="h-8" />
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          {!collapsed && <img src={theme === "dark" ? "/brand/logo-word-white.png" : "/brand/logo-word.png"} alt="Sithuliya Flora" className="h-5" />}
+          {!collapsed && <span className="text-[15px] font-semibold tracking-tight text-fg">Sithuliya Flora</span>}
         </div>
         {Nav}
         <div className="border-t border-line p-3">
@@ -137,7 +137,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/brand/logo-mark.png" alt="" className="h-8" />
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/brand/logo-word.png" alt="Sithuliya Flora" className="h-5" />
+            <span className="text-[15px] font-semibold tracking-tight text-fg">Sithuliya Flora</span>
           </div>
           {Nav}
         </aside>
@@ -162,7 +162,7 @@ export function Shell({ children }: { children: React.ReactNode }) {
                 {unread > 0 && <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-accent ring-2 ring-bg" />}
               </button>
               {bell && (
-                <div className="absolute right-0 top-12 w-80 animate-fade-up overflow-hidden rounded-2xl border border-line bg-panel shadow-[var(--shadow-lift)]">
+                <div className="absolute right-0 top-12 w-80 animate-fade-up overflow-hidden rounded-xl border border-line bg-panel shadow-[var(--shadow-lift)]">
                   <div className="flex items-center justify-between border-b border-line px-4 py-3">
                     <p className="font-medium">Notifications</p>
                     <button onClick={markNoticesRead} className="text-xs text-muted hover:text-fg">Mark all read</button>
@@ -208,8 +208,8 @@ export function OwnerOnly({ children }: { children: React.ReactNode }) {
   if (session?.role !== "OWNER")
     return (
       <div className="card mx-auto mt-10 max-w-md p-8 text-center">
-        <span className="mx-auto grid h-12 w-12 place-items-center rounded-2xl bg-panel-2"><Icon name="lock" /></span>
-        <p className="mt-4 font-serif text-2xl">Owner access only</p>
+        <span className="mx-auto grid h-12 w-12 place-items-center rounded-xl bg-panel-2"><Icon name="lock" /></span>
+        <p className="mt-4 font-semibold tracking-tight text-lg">Owner access only</p>
         <p className="mt-1 text-sm text-muted">Ask the shop owner if you need this screen.</p>
       </div>
     );

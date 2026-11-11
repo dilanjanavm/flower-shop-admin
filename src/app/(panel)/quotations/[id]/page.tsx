@@ -54,7 +54,7 @@ export default function QuoteDetailPage() {
         <div className="space-y-6">
           <section className="card overflow-hidden">
             <div className="flex items-center justify-between border-b border-line px-6 py-4">
-              <h2 className="font-serif text-2xl">Flowers requested</h2>
+              <h2 className="font-semibold tracking-tight text-lg">Flowers requested</h2>
               <span className="text-sm text-muted">{q.items.reduce((s, i) => s + i.qty, 0)} stems</span>
             </div>
             <div className="overflow-x-auto">
@@ -90,8 +90,8 @@ export default function QuoteDetailPage() {
             <div><p className="label">Style</p><p>{taxonomies.styles.find((s) => s.slug === q.style)?.name}</p></div>
             <div><p className="label">Wrap</p><p>{wraps.find((w) => w.id === q.wrapId)?.name}</p></div>
             <div><p className="label">Ribbon</p><p className="flex items-center gap-2"><span className="h-4 w-4 rounded-full ring-1 ring-black/10" style={{ background: ribbons.find((r) => r.id === q.ribbonId)?.hex }} />{ribbons.find((r) => r.id === q.ribbonId)?.name}</p></div>
-            <div className="sm:col-span-3"><p className="label">Customer notes</p><p className="rounded-2xl bg-panel-2 p-4 text-sm">{q.notes || "—"}</p></div>
-            {q.referencePhotos.length > 0 && <div className="sm:col-span-3"><p className="label">Reference photos</p><div className="flex gap-3">{q.referencePhotos.map((p, i) => <Thumb key={i} src={p} className="h-28 w-28 rounded-2xl" />)}</div></div>}
+            <div className="sm:col-span-3"><p className="label">Customer notes</p><p className="rounded-xl bg-panel-2 p-4 text-sm">{q.notes || "—"}</p></div>
+            {q.referencePhotos.length > 0 && <div className="sm:col-span-3"><p className="label">Reference photos</p><div className="flex gap-3">{q.referencePhotos.map((p, i) => <Thumb key={i} src={p} className="h-28 w-28 rounded-xl" />)}</div></div>}
           </section>
 
           <section className="card grid gap-6 p-6 sm:grid-cols-2">
@@ -105,7 +105,7 @@ export default function QuoteDetailPage() {
               <p className="font-medium">{q.recipient.name} · {q.recipient.phone}</p>
               {q.fulfilment === "DELIVERY" && <p className="text-sm text-muted">{q.recipient.line1}, {q.recipient.city}</p>}
             </div>
-            {q.cardMessage && <div className="sm:col-span-2"><p className="label">Card</p><p className="font-serif text-lg italic">“{q.cardMessage}”</p></div>}
+            {q.cardMessage && <div className="sm:col-span-2"><p className="label">Card</p><p className="font-semibold tracking-tight text-base italic">“{q.cardMessage}”</p></div>}
           </section>
         </div>
 
@@ -113,7 +113,7 @@ export default function QuoteDetailPage() {
           <section className="card overflow-hidden">
             <div className="bg-invert px-6 py-4 text-invert-fg">
               <p className="text-xs uppercase tracking-widest opacity-70">{editable ? "Build quotation" : "Quotation"}</p>
-              <p className="mt-1 font-serif text-4xl tabular-nums">{lkr(editable ? total : q.quotedTotal ?? 0)}</p>
+              <p className="mt-1 font-semibold tracking-tight text-3xl tabular-nums">{lkr(editable ? total : q.quotedTotal ?? 0)}</p>
               {q.estimate ? <p className="text-xs opacity-60">Customer saw an indicative estimate of {lkr(q.estimate)}</p> : null}
             </div>
             {editable ? (

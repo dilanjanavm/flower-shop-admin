@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import { DM_Sans, DM_Serif_Display } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import { AdminProvider } from "@/lib/store";
 import { Toaster } from "@/components/ui";
 
-const display = DM_Serif_Display({ subsets: ["latin"], weight: "400", variable: "--font-display", display: "swap" });
-const body = DM_Sans({ subsets: ["latin"], variable: "--font-body", display: "swap" });
+const poppins = Poppins({ subsets: ["latin"], weight: ["300", "400", "500", "600", "700"], variable: "--font-poppins", display: "swap" });
 
 export const metadata: Metadata = {
   title: { default: "Sithuliya Flora · Studio", template: "%s · Sithuliya Flora Studio" },
@@ -17,7 +16,7 @@ const themeScript = `try{var s=JSON.parse(localStorage.getItem('sf-admin-v1')||'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${body.variable}`} suppressHydrationWarning>
+    <html lang="en" className={poppins.variable} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>

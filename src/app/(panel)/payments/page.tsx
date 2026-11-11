@@ -61,7 +61,7 @@ export default function PaymentsPage() {
                   <div>
                     <p className="label">Check that the slip shows</p>
                     <ul className="space-y-2 text-sm">
-                      <li className="flex items-center justify-between rounded-xl bg-panel-2 px-3 py-2"><span className="text-muted">Amount</span><span className="font-serif text-2xl">{lkr(current.total, { decimals: true })}</span></li>
+                      <li className="flex items-center justify-between rounded-xl bg-panel-2 px-3 py-2"><span className="text-muted">Amount</span><span className="font-semibold tracking-tight text-lg">{lkr(current.total, { decimals: true })}</span></li>
                       <li className="flex items-center justify-between rounded-xl bg-panel-2 px-3 py-2"><span className="text-muted">Reference</span><span className="font-mono">{current.orderNumber}</span></li>
                       <li className="flex items-center justify-between rounded-xl bg-panel-2 px-3 py-2"><span className="text-muted">Account</span><span>Sithuliya Flora (Pvt) Ltd</span></li>
                     </ul>

@@ -40,7 +40,7 @@ export default function RiderPage() {
         <div className="flex items-center justify-between">
           <div>
             <p className="text-xs text-muted">Today&apos;s drops</p>
-            <p className="font-serif text-2xl">Hi {rider.name.split(" ")[0]} 👋</p>
+            <p className="font-semibold tracking-tight text-lg">Hi {rider.name.split(" ")[0]} 👋</p>
           </div>
           <div className="flex items-center gap-2">
             {session.role === "OWNER" && <button onClick={() => router.push("/delivery")} className="rounded-full border border-line px-3 py-1.5 text-xs">Back to admin</button>}
@@ -79,13 +79,13 @@ export default function RiderPage() {
                     </div>
                   </div>
                   <div className="grid grid-cols-2 gap-2">
-                    <a href={`tel:${o.recipient.phone}`} className="flex h-12 items-center justify-center gap-2 rounded-2xl bg-panel-2 text-sm font-medium"><Icon name="phone" size={17} /> Call</a>
-                    <a href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(`${o.recipient.line1}, ${o.recipient.city}, Sri Lanka`)}`} target="_blank" rel="noreferrer" className="flex h-12 items-center justify-center gap-2 rounded-2xl bg-panel-2 text-sm font-medium"><Icon name="map" size={17} /> Navigate</a>
+                    <a href={`tel:${o.recipient.phone}`} className="flex h-12 items-center justify-center gap-2 rounded-xl bg-panel-2 text-sm font-medium"><Icon name="phone" size={17} /> Call</a>
+                    <a href={`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(`${o.recipient.line1}, ${o.recipient.city}, Sri Lanka`)}`} target="_blank" rel="noreferrer" className="flex h-12 items-center justify-center gap-2 rounded-xl bg-panel-2 text-sm font-medium"><Icon name="map" size={17} /> Navigate</a>
                   </div>
                   {o.orderStatus === "READY_FOR_DISPATCH" && <Button className="h-12 w-full" onClick={() => transition(o.id, "OUT_FOR_DELIVERY")}><Icon name="bike" size={17} /> Start this drop</Button>}
                   {o.orderStatus === "OUT_FOR_DELIVERY" && (
                     <>
-                      <label className={cn("flex h-28 cursor-pointer flex-col items-center justify-center gap-1 overflow-hidden rounded-2xl border-2 border-dashed text-sm", o.podPhoto ? "border-emerald-400" : "border-line")}>
+                      <label className={cn("flex h-28 cursor-pointer flex-col items-center justify-center gap-1 overflow-hidden rounded-xl border-2 border-dashed text-sm", o.podPhoto ? "border-emerald-400" : "border-line")}>
                         {o.podPhoto ? <Thumb src={o.podPhoto} className="h-full w-full" /> : <><Icon name="camera" size={24} /> Take proof-of-delivery photo</>}
                         <input type="file" accept="image/*" capture="environment" className="sr-only" onChange={(e) => { const f = e.target.files?.[0]; if (f) { updateOrder(o.id, { podPhoto: URL.createObjectURL(f) }); toast({ title: "Photo attached", tone: "success" }); } }} />
                       </label>

@@ -59,7 +59,7 @@ export function OrderCard({ o, compact, draggable, onDragStart }: { o: AdminOrde
       draggable={draggable}
       onDragStart={onDragStart}
       className={cn(
-        "group block rounded-2xl border bg-panel p-3.5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[var(--shadow-lift)]",
+"group block rounded-xl border bg-panel p-3.5 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[var(--shadow-lift)]",
         urgent ? "border-amber-400/70" : "border-line",
         draggable && "cursor-grab active:cursor-grabbing",
       )}
@@ -102,7 +102,7 @@ export function OrderCard({ o, compact, draggable, onDragStart }: { o: AdminOrde
 export function JobSheet({ o }: { o: AdminOrder }) {
   const slot = timeSlots.find((s) => s.code === o.timeSlot);
   return (
-    <div className="print-sheet mx-auto w-full max-w-[148mm] rounded-2xl border border-line bg-white p-6 text-[#1b1714]">
+    <div className="print-sheet mx-auto w-full max-w-[148mm] rounded-xl border border-line bg-white p-6 text-[#1b1714]">
       <div className="flex items-start justify-between border-b border-dashed border-gray-300 pb-3">
         <div>
           <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500">Florist job sheet</p>
@@ -132,9 +132,9 @@ export function JobSheet({ o }: { o: AdminOrder }) {
 }
 
 export function GreetingCard({ o, font }: { o: AdminOrder; font: "serif" | "script" | "sans" }) {
-  const ff = font === "serif" ? "font-serif" : font === "script" ? "italic font-serif" : "font-sans";
+  const ff = font === "serif" ? "font-semibold tracking-tight" : font === "script" ? "italic font-medium" : "font-sans";
   return (
-    <div className="print-sheet mx-auto flex aspect-[148/105] w-full max-w-[148mm] flex-col items-center justify-center rounded-2xl border border-line bg-white p-8 text-center text-[#1b1714]">
+    <div className="print-sheet mx-auto flex aspect-[148/105] w-full max-w-[148mm] flex-col items-center justify-center rounded-xl border border-line bg-white p-8 text-center text-[#1b1714]">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img src="/brand/logo-mark.png" alt="" className="h-8 opacity-80" />
       <p className={cn("mt-5 max-w-sm text-2xl leading-snug", ff)}>{o.cardMessage || "With love"}</p>
@@ -148,10 +148,10 @@ export function Waybill({ o }: { o: AdminOrder }) {
   const slot = timeSlots.find((s) => s.code === o.timeSlot);
   const maps = `https://maps.google.com/?q=${encodeURIComponent(`${o.recipient.line1}, ${o.recipient.city}`)}`;
   return (
-    <div className="print-sheet mx-auto w-full max-w-[148mm] rounded-2xl border border-line bg-white p-6 text-[#1b1714]">
+    <div className="print-sheet mx-auto w-full max-w-[148mm] rounded-xl border border-line bg-white p-6 text-[#1b1714]">
       <div className="flex items-center justify-between border-b border-gray-300 pb-3">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/brand/logo-word.png" alt="Sithuliya Flora" className="h-6" />
+        <span className="text-lg font-semibold tracking-tight">Sithuliya Flora</span>
         <p className="font-mono text-sm font-semibold">{o.orderNumber}</p>
       </div>
       <div className="mt-4 grid grid-cols-[1fr_110px] gap-4">
@@ -190,7 +190,7 @@ export function money(n: number) {
 export function SlipPreview({ name, amount, reference }: { name: string; amount: number; reference: string }) {
   // Mock slip image — production shows the pre-signed S3 URL (valid 5 minutes, NFR-SEC-05)
   return (
-    <div className="relative overflow-hidden rounded-2xl border border-line bg-white p-4 font-mono text-[10px] leading-relaxed text-gray-700 shadow-inner">
+    <div className="relative overflow-hidden rounded-xl border border-line bg-white p-4 font-mono text-[10px] leading-relaxed text-gray-700 shadow-inner">
       <p className="text-center text-xs font-bold text-gray-900">COMMERCIAL BANK</p>
       <p className="text-center">CASH DEPOSIT / TRANSFER</p>
       <div className="my-2 border-t border-dashed border-gray-300" />

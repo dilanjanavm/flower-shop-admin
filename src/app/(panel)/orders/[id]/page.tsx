@@ -80,7 +80,7 @@ export default function OrderDetailPage() {
                 <SlipPreview name={o.slipFileName ?? "slip.jpg"} amount={o.total} reference={o.orderNumber} />
                 <div>
                   <dl className="grid grid-cols-2 gap-4 text-sm">
-                    <div><dt className="label">Order total</dt><dd className="font-serif text-3xl">{lkr(o.total, { decimals: true })}</dd></div>
+                    <div><dt className="label">Order total</dt><dd className="font-semibold tracking-tight text-2xl">{lkr(o.total, { decimals: true })}</dd></div>
                     <div><dt className="label">Reference</dt><dd className="font-mono">{o.orderNumber}</dd></div>
                     <div><dt className="label">Uploaded</dt><dd>{o.slipUploadedAt ? formatDateTime(o.slipUploadedAt) : "—"}</dd></div>
                     <div><dt className="label">Pay before</dt><dd>{formatDateTime(o.paymentDueAt)}</dd></div>
@@ -99,7 +99,7 @@ export default function OrderDetailPage() {
           )}
 
           {o.orderStatus === "PENDING_PAYMENT" && (
-            <section className="flex items-start gap-3 rounded-3xl border border-line bg-panel p-5 text-sm">
+            <section className="flex items-start gap-3 rounded-xl border border-line bg-panel p-5 text-sm">
               <Icon name="clock" className="mt-0.5 text-amber-600" />
               <div>
                 <p className="font-medium">Waiting for the customer&apos;s bank slip</p>
@@ -110,7 +110,7 @@ export default function OrderDetailPage() {
 
           {/* Workflow actions */}
           <section className="card p-6">
-            <h2 className="font-serif text-2xl">Workflow</h2>
+            <h2 className="font-semibold tracking-tight text-lg">Workflow</h2>
             <Stepper status={o.orderStatus} />
             {allowed.length > 0 ? (
               <div className="mt-5 flex flex-wrap gap-2">
@@ -140,7 +140,7 @@ export default function OrderDetailPage() {
               </div>
             ))}
             {o.cardMessage && (
-              <div className="p-5"><p className="label">Card message</p><p className="font-serif text-lg italic">“{o.cardMessage}”</p><p className="text-xs text-muted">— {o.isAnonymousSender ? "Anonymous sender" : o.senderName}</p></div>
+              <div className="p-5"><p className="label">Card message</p><p className="font-semibold tracking-tight text-base italic">“{o.cardMessage}”</p><p className="text-xs text-muted">— {o.isAnonymousSender ? "Anonymous sender" : o.senderName}</p></div>
             )}
             {owner && (
               <dl className="space-y-1.5 p-5 text-sm">
@@ -155,18 +155,18 @@ export default function OrderDetailPage() {
 
           {(o.bouquetPhoto || o.podPhoto || ["PREPARING", "READY_FOR_DISPATCH"].includes(o.orderStatus)) && (
             <section className="card p-6">
-              <h2 className="mb-4 font-serif text-2xl">Photos</h2>
+              <h2 className="mb-4 font-semibold tracking-tight text-lg">Photos</h2>
               <div className="grid gap-4 sm:grid-cols-2">
                 <figure>
-                  {o.bouquetPhoto ? <Thumb src={o.bouquetPhoto} className="aspect-[4/3] rounded-2xl" /> : (
-                    <label className="grid aspect-[4/3] cursor-pointer place-items-center rounded-2xl border-2 border-dashed border-line text-sm text-muted hover:border-fg/40">
+                  {o.bouquetPhoto ? <Thumb src={o.bouquetPhoto} className="aspect-[4/3] rounded-xl" /> : (
+                    <label className="grid aspect-[4/3] cursor-pointer place-items-center rounded-xl border-2 border-dashed border-line text-sm text-muted hover:border-fg/40">
                       <span className="flex flex-col items-center gap-2"><Icon name="camera" /> Upload finished-bouquet photo</span>
                       <input type="file" accept="image/*" className="sr-only" onChange={(e) => { const f = e.target.files?.[0]; if (f) { updateOrder(o.id, { bouquetPhoto: URL.createObjectURL(f) }); toast({ title: "Photo added", body: "The customer can see it on their order.", tone: "success" }); } }} />
                     </label>
                   )}
                   <figcaption className="mt-2 text-xs text-muted">Finished bouquet (shown to customer)</figcaption>
                 </figure>
-                {o.podPhoto && <figure><Thumb src={o.podPhoto} className="aspect-[4/3] rounded-2xl" /><figcaption className="mt-2 text-xs text-muted">Proof of delivery</figcaption></figure>}
+                {o.podPhoto && <figure><Thumb src={o.podPhoto} className="aspect-[4/3] rounded-xl" /><figcaption className="mt-2 text-xs text-muted">Proof of delivery</figcaption></figure>}
               </div>
             </section>
           )}
@@ -201,7 +201,7 @@ export default function OrderDetailPage() {
               <p className="label">Rider</p>
               <div className="space-y-2">
                 {riders.filter((r) => r.active).map((r) => (
-                  <button key={r.id} onClick={() => assignRider(o.id, r.id)} className={cn("flex w-full items-center gap-3 rounded-2xl border px-3 py-2.5 text-left text-sm transition", o.riderId === r.id ? "border-fg bg-panel-2" : "border-line hover:border-fg/40")}>
+                  <button key={r.id} onClick={() => assignRider(o.id, r.id)} className={cn("flex w-full items-center gap-3 rounded-xl border px-3 py-2.5 text-left text-sm transition", o.riderId === r.id ? "border-fg bg-panel-2" : "border-line hover:border-fg/40")}>
                     <span className="grid h-8 w-8 place-items-center rounded-full bg-accent-soft text-accent-fg"><Icon name="bike" size={16} /></span>
                     <span className="flex-1"><span className="block font-medium">{r.name}</span><span className="text-xs text-muted">{orders.filter((x) => x.riderId === r.id && x.deliveryDate === o.deliveryDate && x.orderStatus !== "DELIVERED").length} drops that day</span></span>
                     {o.riderId === r.id && <Icon name="check" size={16} />}
@@ -240,7 +240,7 @@ export default function OrderDetailPage() {
         {print === "card" && (
           <div className="no-print mb-4"><Tabs tabs={[{ key: "script", label: "Script" }, { key: "serif", label: "Serif" }, { key: "sans", label: "Sans" }]} value={font} onChange={setFont} /></div>
         )}
-        <div className="rounded-2xl bg-panel-2 p-4">
+        <div className="rounded-xl bg-panel-2 p-4">
           {print === "job" && <JobSheet o={o} />}
           {print === "card" && <GreetingCard o={o} font={font} />}
           {print === "waybill" && <Waybill o={o} />}

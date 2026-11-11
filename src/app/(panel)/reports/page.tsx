@@ -62,13 +62,13 @@ export default function ReportsPage() {
           { l: "Avg order value", v: lkr(Math.round(revenue / Math.max(1, count))) },
           { l: "Wastage vs sales", v: `${wasteRatio.toFixed(1)}%`, h: `${lkr(wasteValue)} of stems written off` },
         ].map((k) => (
-          <div key={k.l} className="card p-5"><p className="text-xs text-muted">{k.l}</p><p className="mt-2 font-serif text-3xl tabular-nums">{k.v}</p>{k.h && <p className="mt-1 text-xs text-muted">{k.h}</p>}</div>
+          <div key={k.l} className="card p-5"><p className="text-xs text-muted">{k.l}</p><p className="mt-2 font-semibold tracking-tight text-2xl tabular-nums">{k.v}</p>{k.h && <p className="mt-1 text-xs text-muted">{k.h}</p>}</div>
         ))}
       </div>
 
       <section className="card mt-6 p-6">
         <div className="flex items-center justify-between">
-          <div><h2 className="font-serif text-2xl">Revenue trend</h2><p className="text-xs text-muted">Daily paid revenue</p></div>
+          <div><h2 className="font-semibold tracking-tight text-lg">Revenue trend</h2><p className="text-xs text-muted">Daily paid revenue</p></div>
           <button onClick={() => setTable((v) => !v)} className="text-sm text-muted hover:text-fg">{table ? "Show chart" : "Show as table"}</button>
         </div>
         {table ? (
@@ -80,15 +80,15 @@ export default function ReportsPage() {
 
       <div className="mt-6 grid gap-6 lg:grid-cols-2">
         <section className="card p-6">
-          <h2 className="font-serif text-2xl">Top 10 bouquets</h2>
+          <h2 className="font-semibold tracking-tight text-lg">Top 10 bouquets</h2>
           <p className="mb-5 text-xs text-muted">Units sold</p>
           <HBarChart data={top} format={(n) => `${n} sold`} />
         </section>
         <section className="card p-6">
-          <h2 className="font-serif text-2xl">Deliveries by zone</h2>
+          <h2 className="font-semibold tracking-tight text-lg">Deliveries by zone</h2>
           <p className="mb-5 text-xs text-muted">Orders in the current dataset</p>
           <HBarChart data={byZone} format={(n) => `${n} orders`} />
-          <h2 className="mt-8 font-serif text-2xl">Orders by weekday</h2>
+          <h2 className="mt-8 font-semibold tracking-tight text-lg">Orders by weekday</h2>
           <p className="mb-4 text-xs text-muted">Sundays closed</p>
           <ColumnChart data={weekday} format={(n) => `${n} orders`} height={120} />
         </section>

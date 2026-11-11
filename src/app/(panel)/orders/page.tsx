@@ -84,7 +84,7 @@ function Board() {
                 onDragLeave={() => setOver(null)}
                 onDrop={() => drop(c.status)}
                 className={cn(
-                  "flex w-72 shrink-0 flex-col rounded-3xl border p-3 transition-colors",
+                  "flex w-72 shrink-0 flex-col rounded-xl border p-3 transition-colors",
                   over === c.status ? "border-accent bg-accent-soft/50" : drag && allowed ? "border-dashed border-accent/60 bg-panel-2/60" : "border-transparent bg-panel-2/60",
                   drag && !allowed && dragged?.orderStatus !== c.status && "opacity-50",
                 )}
@@ -99,7 +99,7 @@ function Board() {
                       <OrderCard o={o} draggable onDragStart={(e) => { setDrag(o.id); e.dataTransfer.effectAllowed = "move"; }} />
                     </div>
                   ))}
-                  {list.length === 0 && <p className="rounded-2xl border border-dashed border-line py-8 text-center text-xs text-faint">Nothing here</p>}
+                  {list.length === 0 && <p className="rounded-xl border border-dashed border-line py-8 text-center text-xs text-faint">Nothing here</p>}
                 </div>
               </section>
             );

@@ -46,7 +46,7 @@ export default function SettingsPage() {
             <Field label="Account name"><input className="field" value={bank.accountName} onChange={(e) => setBank({ ...bank, accountName: e.target.value })} /></Field>
             <Field label="Account number"><input className="field font-mono" value={bank.accountNumber} onChange={(e) => setBank({ ...bank, accountNumber: e.target.value })} /></Field>
           </div>
-          <div className="mt-6 rounded-2xl bg-panel-2 p-4 text-sm">
+          <div className="mt-6 rounded-xl bg-panel-2 p-4 text-sm">
             <p className="label">Customer preview</p>
             <p>{bank.bank} · {bank.branch}</p>
             <p className="font-medium">{bank.accountName}</p>

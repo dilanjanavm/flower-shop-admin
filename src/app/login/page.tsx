@@ -66,11 +66,11 @@ export default function AdminLoginPage() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/brand/logo-mark-white.png" alt="" className="h-10" />
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/brand/logo-word-white.png" alt="Sithuliya Flora" className="h-7" />
+          <span className="text-xl font-semibold tracking-tight text-white">Sithuliya Flora</span>
         </div>
         <div className="absolute bottom-12 left-12 right-12 text-[#fbf8f3]">
           <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#f3adbd]">Studio portal</p>
-          <p className="mt-3 max-w-md font-serif text-5xl leading-tight">Every order, slip and stem — in one calm place.</p>
+          <p className="mt-3 max-w-md font-semibold tracking-tight text-4xl leading-tight">Every order, slip and stem — in one calm place.</p>
         </div>
       </div>
 
@@ -80,11 +80,11 @@ export default function AdminLoginPage() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/brand/logo-mark.png" alt="" className="h-9" />
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/brand/logo-word.png" alt="Sithuliya Flora" className="h-6" />
+            <span className="text-lg font-semibold tracking-tight">Sithuliya Flora</span>
           </div>
           {step === "creds" ? (
             <>
-              <h1 className="font-serif text-4xl">Staff sign in</h1>
+              <h1 className="font-semibold tracking-tight text-3xl">Staff sign in</h1>
               <p className="mt-2 text-sm text-muted">Customer accounts can&apos;t sign in here.</p>
               <div className="mt-6 grid grid-cols-3 gap-1 rounded-full bg-panel-2 p-1 text-sm">
                 {(["OWNER", "FLORIST", "RIDER"] as Role[]).map((r) => (
@@ -102,8 +102,8 @@ export default function AdminLoginPage() {
             </>
           ) : (
             <>
-              <span className="grid h-12 w-12 place-items-center rounded-2xl bg-accent-soft text-accent-fg"><Icon name="shield" size={24} /></span>
-              <h1 className="mt-5 font-serif text-4xl">Two-step verification</h1>
+              <span className="grid h-12 w-12 place-items-center rounded-xl bg-accent-soft text-accent-fg"><Icon name="shield" size={24} /></span>
+              <h1 className="mt-5 font-semibold tracking-tight text-3xl">Two-step verification</h1>
               <p className="mt-2 text-sm text-muted">Enter the 6-digit code from your authenticator app. This step is required for the owner account.</p>
               <input
                 autoFocus

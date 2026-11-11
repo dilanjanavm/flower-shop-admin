@@ -17,7 +17,7 @@ const variants: Record<Variant, string> = {
 };
 export const btn = (v: Variant = "primary", s: Size = "md", extra?: string) =>
   cn(
-    "inline-flex items-center justify-center gap-2 rounded-full font-medium transition-all duration-200 active:scale-[0.97] disabled:pointer-events-none disabled:opacity-40",
+"inline-flex items-center justify-center gap-2 rounded-full font-medium transition-all duration-200 active:scale-[0.97] disabled:pointer-events-none disabled:opacity-40",
     s === "sm" ? "h-8 px-3.5 text-[13px]" : "h-10 px-5 text-sm",
     variants[v],
     extra,
@@ -54,7 +54,7 @@ export function PageHeader({ title, subtitle, actions }: { title: string; subtit
   return (
     <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
       <div>
-        <h1 className="font-serif text-3xl tracking-tight sm:text-4xl">{title}</h1>
+        <h1 className="font-semibold tracking-tight text-2xl  sm:text-3xl">{title}</h1>
         {subtitle && <p className="mt-1 text-sm text-muted">{subtitle}</p>}
       </div>
       {actions && <div className="flex flex-wrap items-center gap-2">{actions}</div>}
@@ -70,7 +70,7 @@ export function StatCard({ label, value, hint, icon, tone = "neutral", href, del
         <p className="text-[13px] text-muted">{label}</p>
         <span className={cn("grid h-9 w-9 place-items-center rounded-xl", ring)}><Icon name={icon} size={18} /></span>
       </div>
-      <p className="mt-3 font-serif text-3xl tabular-nums tracking-tight">{value}</p>
+      <p className="mt-3 font-semibold tracking-tight text-2xl tabular-nums ">{value}</p>
       {hint && <p className="mt-1 text-xs text-muted">{hint}</p>}
     </div>
   );
@@ -127,9 +127,9 @@ export function Modal({ open, onClose, title, children, wide, footer }: { open: 
   return (
     <div className="fixed inset-0 z-[80] flex items-end justify-center sm:items-center sm:p-6" role="dialog" aria-modal="true" aria-label={title}>
       <button className="absolute inset-0 animate-fade-in bg-black/40 backdrop-blur-[2px]" onClick={onClose} aria-label="Close" />
-      <div className={cn("relative flex max-h-[92vh] w-full animate-fade-up flex-col overflow-hidden rounded-t-3xl border border-line bg-panel shadow-[var(--shadow-lift)] sm:rounded-3xl", wide ? "max-w-3xl" : "max-w-lg")}>
+      <div className={cn("relative flex max-h-[92vh] w-full animate-fade-up flex-col overflow-hidden rounded-t-3xl border border-line bg-panel shadow-[var(--shadow-lift)] sm:rounded-xl", wide ? "max-w-3xl" : "max-w-lg")}>
         <div className="flex items-center justify-between border-b border-line px-6 py-4">
-          <h3 className="font-serif text-2xl">{title}</h3>
+          <h3 className="font-semibold tracking-tight text-lg">{title}</h3>
           <button onClick={onClose} className="grid h-9 w-9 place-items-center rounded-full hover:bg-panel-2" aria-label="Close dialog"><Icon name="close" size={18} /></button>
         </div>
         <div className="flex-1 overflow-y-auto p-6">{children}</div>
@@ -151,7 +151,7 @@ export function Drawer({ open, onClose, title, children, footer }: { open: boole
       <button className={cn("absolute inset-0 bg-black/35 transition-opacity duration-300", open ? "opacity-100" : "opacity-0")} onClick={onClose} aria-label="Close" tabIndex={-1} />
       <aside role="dialog" aria-label={title} className={cn("absolute inset-y-0 right-0 flex w-full max-w-xl flex-col border-l border-line bg-panel shadow-[var(--shadow-lift)] transition-transform duration-500 ease-[var(--ease-out-soft)]", open ? "translate-x-0" : "translate-x-full")}>
         <div className="flex items-center justify-between border-b border-line px-6 py-4">
-          <h3 className="font-serif text-2xl">{title}</h3>
+          <h3 className="font-semibold tracking-tight text-lg">{title}</h3>
           <button onClick={onClose} className="grid h-9 w-9 place-items-center rounded-full hover:bg-panel-2" aria-label="Close"><Icon name="close" size={18} /></button>
         </div>
         <div className="flex-1 overflow-y-auto p-6">{open && children}</div>
@@ -164,8 +164,8 @@ export function Drawer({ open, onClose, title, children, footer }: { open: boole
 export function Empty({ icon, title, body, action }: { icon: IconName; title: string; body?: string; action?: ReactNode }) {
   return (
     <div className="flex flex-col items-center px-6 py-14 text-center">
-      <span className="grid h-14 w-14 place-items-center rounded-2xl bg-panel-2 text-muted"><Icon name={icon} size={24} /></span>
-      <p className="mt-4 font-serif text-xl">{title}</p>
+      <span className="grid h-14 w-14 place-items-center rounded-xl bg-panel-2 text-muted"><Icon name={icon} size={24} /></span>
+      <p className="mt-4 font-semibold tracking-tight text-lg">{title}</p>
       {body && <p className="mt-1 max-w-sm text-sm text-muted">{body}</p>}
       {action && <div className="mt-5">{action}</div>}
     </div>
@@ -186,7 +186,7 @@ export function Toaster() {
   return (
     <div className="pointer-events-none fixed bottom-5 right-5 z-[90] flex w-[min(92vw,380px)] flex-col gap-2" aria-live="polite">
       {toasts.map((t) => (
-        <div key={t.id} className="pointer-events-auto flex animate-fade-up items-start gap-3 rounded-2xl bg-invert px-4 py-3 text-invert-fg shadow-[var(--shadow-lift)]">
+        <div key={t.id} className="pointer-events-auto flex animate-fade-up items-start gap-3 rounded-xl bg-invert px-4 py-3 text-invert-fg shadow-[var(--shadow-lift)]">
           <span className={cn("mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full", t.tone === "error" ? "bg-red-500 text-white" : t.tone === "success" ? "bg-emerald-500 text-white" : "bg-brand text-[#1b1714]")}>
             <Icon name={t.tone === "error" ? "alert" : "check"} size={13} strokeWidth={2.4} />
           </span>

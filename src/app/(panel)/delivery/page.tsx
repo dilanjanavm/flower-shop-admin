@@ -41,11 +41,11 @@ export default function DeliveryPage() {
             <Link href="/rider" className="ml-auto inline-flex items-center gap-1.5 text-sm text-muted hover:text-fg"><Icon name="phone" size={15} /> Open rider view</Link>
           </div>
           <div className="grid gap-5 lg:grid-cols-3">
-            <section className="rounded-3xl bg-panel-2/60 p-4">
+            <section className="rounded-xl bg-panel-2/60 p-4">
               <p className="mb-3 flex items-center justify-between px-1 text-sm font-semibold">Unassigned <span className="text-xs text-muted">{unassigned.length}</span></p>
               <div className="space-y-2.5">
                 {unassigned.map((o) => (
-                  <div key={o.id} className="rounded-2xl border border-line bg-panel p-3.5">
+                  <div key={o.id} className="rounded-xl border border-line bg-panel p-3.5">
                     <div className="flex items-center gap-3">
                       <Thumb src={o.items[0]?.image} className="h-10 w-9 rounded-lg" />
                       <div className="min-w-0 flex-1"><p className="truncate text-sm font-medium">{o.recipient.name}</p><p className="text-xs text-muted">{o.recipient.city} · {timeSlots.find((s) => s.code === o.timeSlot)?.label}</p></div>
@@ -70,7 +70,7 @@ export default function DeliveryPage() {
                   </div>
                   <ol className="space-y-2">
                     {mine.map((o, i) => (
-                      <li key={o.id} className="flex items-center gap-3 rounded-2xl border border-line p-3">
+                      <li key={o.id} className="flex items-center gap-3 rounded-xl border border-line p-3">
                         <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-panel-2 text-[11px] font-bold">{i + 1}</span>
                         <div className="min-w-0 flex-1"><Link href={`/orders/${o.id}`} className="block truncate text-sm font-medium hover:underline">{o.recipient.name}</Link><p className="text-xs text-muted">{o.recipient.city} · {timeSlots.find((s) => s.code === o.timeSlot)?.window}</p></div>
                         {o.orderStatus === "READY_FOR_DISPATCH" ? <Button size="sm" onClick={() => transition(o.id, "OUT_FOR_DELIVERY")}>Send out</Button> : <Badge tone={o.orderStatus === "DELIVERED" ? "green" : o.orderStatus === "DELIVERY_FAILED" ? "red" : o.orderStatus === "OUT_FOR_DELIVERY" ? "ink" : "neutral"}>{o.orderStatus === "OUT_FOR_DELIVERY" ? "On the way" : orderStatusLabel[o.orderStatus]}</Badge>}
@@ -142,12 +142,12 @@ export default function DeliveryPage() {
       {tab === "calendar" && (
         <div className="grid gap-6 lg:grid-cols-2">
           <section className="card p-6">
-            <h2 className="font-serif text-2xl">Blackout dates</h2>
+            <h2 className="font-semibold tracking-tight text-lg">Blackout dates</h2>
             <p className="text-sm text-muted">No orders can be placed for these dates. Sundays are always closed.</p>
             <ul className="mt-4 divide-y divide-line">
               {blackouts.map((b) => (
                 <li key={b.date} className="flex items-center gap-3 py-3">
-                  <span className="grid h-11 w-11 place-items-center rounded-xl bg-panel-2 text-center text-[10px] leading-tight"><span><span className="block font-serif text-base">{Number(b.date.slice(8))}</span>{formatDate(b.date).split(" ")[1]}</span></span>
+                  <span className="grid h-11 w-11 place-items-center rounded-xl bg-panel-2 text-center text-[10px] leading-tight"><span><span className="block font-semibold tracking-tight text-base">{Number(b.date.slice(8))}</span>{formatDate(b.date).split(" ")[1]}</span></span>
                   <span className="flex-1 text-sm">{b.note}</span>
                   <button onClick={() => removeBlackout(b.date)} className="text-muted hover:text-red-600" aria-label="Remove"><Icon name="trash" size={16} /></button>
                 </li>
@@ -160,7 +160,7 @@ export default function DeliveryPage() {
             </div>
           </section>
           <section className="card p-6">
-            <h2 className="font-serif text-2xl">Peak-day rules</h2>
+            <h2 className="font-semibold tracking-tight text-lg">Peak-day rules</h2>
             <p className="text-sm text-muted">Surcharges and minimum order values by date range.</p>
             <ul className="mt-4 space-y-3 text-sm">
               {[
@@ -168,7 +168,7 @@ export default function DeliveryPage() {
                 { d: "9 May 2027", r: "Mother's Day", rule: "+Rs 500 surcharge · Midnight slot closed" },
                 { d: "24 – 25 Dec 2026", r: "Christmas", rule: "Shop closed on 25th" },
               ].map((p) => (
-                <li key={p.d} className="rounded-2xl border border-line p-4"><p className="font-medium">{p.r} <span className="text-xs font-normal text-muted">· {p.d}</span></p><p className="mt-1 text-muted">{p.rule}</p></li>
+                <li key={p.d} className="rounded-xl border border-line p-4"><p className="font-medium">{p.r} <span className="text-xs font-normal text-muted">· {p.d}</span></p><p className="mt-1 text-muted">{p.rule}</p></li>
               ))}
             </ul>
           </section>

@@ -28,7 +28,7 @@ export default function CouponsPage() {
             <div className="relative flex items-start justify-between">
               <div>
                 <p className="font-mono text-xl font-semibold tracking-wider">{c.code}</p>
-                <p className="mt-1 font-serif text-3xl">{c.type === "PERCENT" ? `${c.value}% off` : `${lkr(c.value)} off`}</p>
+                <p className="mt-1 font-semibold tracking-tight text-2xl">{c.type === "PERCENT" ? `${c.value}% off` : `${lkr(c.value)} off`}</p>
               </div>
               {live(c) ? <Badge tone="green" dot>Live</Badge> : c.used >= c.usageLimit ? <Badge tone="neutral">Used up</Badge> : !c.active ? <Badge tone="neutral">Paused</Badge> : <Badge tone="amber">Scheduled / ended</Badge>}
             </div>
