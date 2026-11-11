@@ -1,0 +1,32 @@
+import type { Metadata } from "next";
+import { DM_Sans, DM_Serif_Display } from "next/font/google";
+import "./globals.css";
+import { AdminProvider } from "@/lib/store";
+import { Toaster } from "@/components/ui";
+
+const display = DM_Serif_Display({ subsets: ["latin"], weight: "400", variable: "--font-display", display: "swap" });
+const body = DM_Sans({ subsets: ["latin"], variable: "--font-body", display: "swap" });
+
+export const metadata: Metadata = {
+  title: { default: "Sithuliya Flora · Studio", template: "%s · Sithuliya Flora Studio" },
+  robots: { index: false, follow: false },
+};
+
+// Applies the saved theme before paint to avoid a light/dark flash.
+const themeScript = `try{var s=JSON.parse(localStorage.getItem('sf-admin-v1')||'{}');var t=s.theme||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');if(t==='dark')document.documentElement.classList.add('dark')}catch(e){}`;
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en" className={`${display.variable} ${body.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body className="min-h-dvh">
+        <AdminProvider>
+          {children}
+          <Toaster />
+        </AdminProvider>
+      </body>
+    </html>
+  );
+}

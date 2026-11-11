@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+/* Light + dark admin theme (SRS UI-01). Toggle with the .dark class on <html>. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --font-serif: var(--font-display), "DM Serif Display", Georgia, serif;
+  --font-sans: var(--font-body), "DM Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --color-bg: var(--bg);
+  --color-panel: var(--panel);
+  --color-panel-2: var(--panel-2);
+  --color-line: var(--line);
+  --color-fg: var(--fg);
+  --color-fg-soft: var(--fg-soft);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-fg: var(--accent-fg);
+  --color-invert: var(--invert);
+  --color-invert-fg: var(--invert-fg);
+}
+
+@theme {
+  --color-brand: #f095a8;
+  --color-brand-deep: #c24e6e;
+  --shadow-soft: 0 1px 2px rgb(0 0 0 / 0.04), 0 8px 24px -14px rgb(0 0 0 / 0.18);
+  --shadow-lift: 0 2px 6px rgb(0 0 0 / 0.06), 0 24px 48px -20px rgb(0 0 0 / 0.3);
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-fade-up: fade-up 0.6s var(--ease-out-soft) both;
+  --animate-fade-in: fade-in 0.4s ease both;
+  --animate-pop: pop 0.35s var(--ease-out-soft) both;
+  --animate-shimmer: shimmer 1.6s linear infinite;
+  --animate-slide-in: slide-in 0.4s var(--ease-out-soft) both;
+
+  @keyframes fade-up { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes pop { 0% { transform: scale(0.7); opacity: 0; } 60% { transform: scale(1.08); opacity: 1; } 100% { transform: scale(1); } }
+  @keyframes shimmer { from { background-position: -400px 0; } to { background-position: 400px 0; } }
+  @keyframes slide-in { from { transform: translateX(100%); } to { transform: none; } }
+}
+
+:root {
+  --bg: #f7f4ef;
+  --panel: #fffdf9;
+  --panel-2: #f2ede5;
+  --line: #e7e0d5;
+  --fg: #1b1714;
+  --fg-soft: #3a332d;
+  --muted: #6f675f;
+  --faint: #a39a90;
+  --accent: #c24e6e;
+  --accent-soft: #fbe3e9;
+  --accent-fg: #a33d5b;
+  --invert: #1b1714;
+  --invert-fg: #fbf8f3;
+  color-scheme: light;
+}
+
+.dark {
+  --bg: #121110;
+  --panel: #1b1a18;
+  --panel-2: #24221f;
+  --line: #34312d;
+  --fg: #f4efe8;
+  --fg-soft: #ddd5ca;
+  --muted: #a79e93;
+  --faint: #776f66;
+  --accent: #e0758d;
+  --accent-soft: #3a2228;
+  --accent-fg: #f3adbd;
+  --invert: #f4efe8;
+  --invert-fg: #1b1714;
+  color-scheme: dark;
+}
+
+@layer base {
+  body {
+    @apply bg-bg text-fg font-sans antialiased;
+  }
+  ::selection { background: var(--accent-soft); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 6px; }
+  button:not(:disabled), [role="button"]:not(:disabled) { cursor: pointer; }
+}
+
+@layer components {
+  .card { @apply rounded-3xl border border-line bg-panel shadow-[var(--shadow-soft)]; }
+  .field {
+    @apply w-full rounded-xl border border-line bg-panel px-3.5 py-2.5 text-sm text-fg placeholder:text-faint transition
+      focus:border-fg/40 focus:outline-none focus:ring-4 focus:ring-accent-soft;
+  }
+  .label { @apply mb-1.5 block text-[11px] font-semibold uppercase tracking-wider text-muted; }
+  .th { @apply px-4 py-3 text-left text-[11px] font-semibold uppercase tracking-wider text-muted; }
+  .td { @apply px-4 py-3.5 align-middle; }
+  .skeleton {
+    background: linear-gradient(90deg, var(--panel-2) 0px, var(--panel) 120px, var(--panel-2) 240px);
+    background-size: 800px 100%;
+    @apply animate-shimmer rounded-xl;
+  }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { scrollbar-width: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+/* Printables: A5 job sheet, A6 card, A5 waybill (SRS UI-06) */
+@media print {
+  .no-print { display: none !important; }
+  body { background: white !important; color: black !important; }
+  .print-sheet { box-shadow: none !important; border: none !important; margin: 0 !important; }
+}
